@@ -1,0 +1,3 @@
+ktb_crud_homepage:
+    path:     /
+    defaults: { _controller: KTBCrudBundle:Default:index }
