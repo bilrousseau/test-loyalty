@@ -68,12 +68,23 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+# Resource Serialization
+format_listener:
+    rules:
+        - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+
 # FOS Rest Configuration
 fos_rest:
     body_converter:
         enabled: true
     view:
         formats: { json: true, xml: false, rss: false }
+        view_response_listener: true # ask FOSRestBundle to call a listener to get the returned and serialized obj
     serializer:
         serialize_null: true
+    param_fetcher_listener: force
+
+# De-serialize data
+sensio_framework_extra:
+    request: { converters: true }
 
